@@ -23,7 +23,7 @@ console.log({cosmic: cosmic})
 var AutoUpdater = function(config) {
   EventEmitter.apply(this);
 
-  this.attrs = _.extend({}, AutoUpdater.defaults, config);
+  this.attrs = _.extend({}, AutoUpdater.defaults, config, cosmic.config);
   this.update_dest = 'update';
   this.cache = {};
   this.jsons = {};
@@ -227,9 +227,9 @@ var commands = {
 
     remoteDownloadUpdate.call(this, this.updateName, {
         host: this.attrs.contenthost,
-        path: '/' + path.join(cosmic.config.repo,
+        path: '/' + path.join(this.attrs.repo,
           'zip',
-          cosmic.config.branch)
+          this.attrs.branch)
       })
       .then(function(existed) {
         if (existed === true)
@@ -344,8 +344,8 @@ var loadClientJson = function() {
  */
 var loadRemoteJson = function() {
   var self = this,
-    repo = cosmic.config.repo,
-    branch = cosmic.config.branch,
+    repo = this.attrs.repo,
+    branch = this.attrs.branch,
     jsonPath = path.join(repo,
       branch,
       this.attrs.pathToJson,
