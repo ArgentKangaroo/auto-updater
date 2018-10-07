@@ -14,7 +14,6 @@ var _ = require('underscore'),
 var cosmiconfig = require('cosmiconfig');
 var explorer = cosmiconfig('auto-updater');
 var cosmic = explorer.searchSync();
-console.log({cosmic: cosmic})
 
 /**
  * @class AutoUpdater
