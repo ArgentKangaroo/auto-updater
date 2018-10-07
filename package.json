@@ -9,6 +9,7 @@
   "main": "./auto-updater",
   "dependencies": {
     "adm-zip": "^0.4.7",
+    "cosmiconfig": "^5.0.6",
     "node-promise": "^0.5.12",
     "underscore": "^1.8.3"
   },
@@ -19,10 +20,10 @@
     "update",
     "updater"
   ],
-  "bugs": "https://github.com/juampi92/auto-updater/issues",
+  "bugs": "https://github.com/ArgentKangaroo/auto-updater/issues",
   "repository": {
     "type": "git",
-    "url": "https://github.com/juampi92/auto-updater.git"
+    "url": "https://github.com/ArgentKangaroo/auto-updater.git"
   },
   "license": "GPL-2.0",
   "engines": {
@@ -36,7 +37,7 @@
     "test": "mocha --reporter spec test/*.js"
   },
   "auto-updater": {
-    "repo": "juampi92/auto-updater",
+    "repo": "ArgentKangaroo/auto-updater",
     "branch": "v1.0.0"
   }
 }

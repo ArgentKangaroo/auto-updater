@@ -11,6 +11,11 @@ var fs = require('fs'),
 var _ = require('underscore'),
   Defer = require('node-promise').defer;
 
+var cosmiconfig = require('cosmiconfig');
+var explorer = cosmiconfig('auto-updater');
+var cosmic = explorer.searchSync();
+console.log({cosmic: cosmic})
+
 /**
  * @class AutoUpdater
  * @extends event-emitter
@@ -218,14 +223,13 @@ var commands = {
         .then(commands['download-update'].bind(this));
     }
 
-    var self = this,
-      jsoninfo = this.jsons.client['auto-updater'];
+    var self = this;
 
     remoteDownloadUpdate.call(this, this.updateName, {
         host: this.attrs.contenthost,
-        path: '/' + path.join(jsoninfo.repo,
+        path: '/' + path.join(cosmic.config.repo,
           'zip',
-          jsoninfo.branch)
+          cosmic.config.branch)
       })
       .then(function(existed) {
         if (existed === true)
@@ -340,9 +344,8 @@ var loadClientJson = function() {
  */
 var loadRemoteJson = function() {
   var self = this,
-    jsoninfo = self.jsons.client['auto-updater'],
-    repo = jsoninfo.repo,
-    branch = jsoninfo.branch,
+    repo = cosmic.config.repo,
+    branch = cosmic.config.branch,
     jsonPath = path.join(repo,
       branch,
       this.attrs.pathToJson,
